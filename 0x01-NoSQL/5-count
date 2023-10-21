@@ -1,0 +1,2 @@
+// select by condition
+db.school.count()
