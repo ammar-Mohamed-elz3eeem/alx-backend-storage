@@ -1,0 +1,2 @@
+// create new db called my_db
+db.school.insert({"name": "Holberton school"})
