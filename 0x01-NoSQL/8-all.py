@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """script to list all documents in collection
 """
-from pymongo.collation import Collation
+from pymongo.collection import Collection
 from pymongo.cursor import CursorType
 
 

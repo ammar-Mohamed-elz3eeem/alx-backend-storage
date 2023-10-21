@@ -2,7 +2,7 @@
 """script to insert in collection
 """
 from typing import Dict, Any
-from pymongo.collation import Collation
+from pymongo.collection import Collection
 
 
 def insert_school(mongo_collection: Collation, **kwargs: Dict[Any, Any]) -> str:
