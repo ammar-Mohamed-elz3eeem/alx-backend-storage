@@ -5,7 +5,7 @@ from pymongo.collection import Collection
 from pymongo.cursor import CursorType
 
 
-def list_all(mongo_collection: Collation) -> CursorType:
+def list_all(mongo_collection: Collection) -> CursorType:
     """get all documents defined in single collection
     with collection name as input
 
