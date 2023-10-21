@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 """script to insert in collection
 """
-from typing import List
-from pymongo.collection import Collection
-from pymongo.cursor import Cursor
 
 
-def schools_by_topic(mongo_collection: Collection, topic: str) -> Cursor:
+def schools_by_topic(mongo_collection, topic):
     """insert document into collection given as input
 
     Args:
