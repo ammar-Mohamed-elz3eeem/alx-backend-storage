@@ -12,4 +12,4 @@ def insert_school(mongo_collection, **kwargs):
     Returns:
         str: newely inserted item id
     """
-    return mongo_collection.insert_one(kwargs).inserted_id.__str__()
+    return mongo_collection.insert_one(kwargs).inserted_id
