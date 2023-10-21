@@ -1,0 +1,2 @@
+// update by condition
+db.school.update({"name": "Holberton school"}, {"$set": {"address": "972"}})
