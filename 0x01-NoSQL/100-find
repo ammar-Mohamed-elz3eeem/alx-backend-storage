@@ -1,0 +1,2 @@
+// list all document that have name starting with Holberton
+db.school.find({ name: /^Holberton.*$/ });
