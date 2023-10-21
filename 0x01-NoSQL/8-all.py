@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """script to list all documents in collection
 """
-from pymongo.collection import Collection
-from pymongo.cursor import Cursor
 
 
-def list_all(mongo_collection: Collection) -> Cursor:
+def list_all(mongo_collection):
     """get all documents defined in single collection
     with collection name as input
 

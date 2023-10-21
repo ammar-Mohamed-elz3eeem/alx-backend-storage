@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """script to insert in collection
 """
-from typing import List
-from pymongo.collection import Collection
 
 
-def update_topics(mongo_collection: Collection, name: str, topics: List[str]) -> None:
+def update_topics(mongo_collection, name: str, topics):
     """insert document into collection given as input
 
     Args:

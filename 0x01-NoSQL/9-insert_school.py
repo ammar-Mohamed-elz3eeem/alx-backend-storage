@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 """script to insert in collection
 """
-from typing import Dict, Any
-from pymongo.collection import Collection
 
 
-def insert_school(mongo_collection: Collection, **kwargs: Dict[Any, Any]) -> str:
+def insert_school(mongo_collection, **kwargs):
     """insert document into collection given as input
 
     Args:
