@@ -8,8 +8,15 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
+    """
+    count how many numbers function
+    in cache have been called
+    """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
+        """
+        wrapper to return the result
+        """
         key = method.__qualname__
         self._redis.incr(key)
         return method(self, *args, **kwargs)
@@ -17,8 +24,15 @@ def count_calls(method: Callable) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
+    """
+    save into redis the input and outputs that
+    have been called with a function
+    """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
+        """
+        wrapper to return the result
+        """
         key = method.__qualname__
         inp_key = key + ":inputs"
         out_key = key + ":outputs"
@@ -30,6 +44,10 @@ def call_history(method: Callable) -> Callable:
 
 
 def replay(func: Callable):
+    """
+    show summary of how many times a function have been called
+    with summary of inputs and outputs the function had made
+    """
     r = redis.Redis()
     key = func.__qualname__
     inputs = r.lrange("{}:inputs".format(key), 0, -1)
