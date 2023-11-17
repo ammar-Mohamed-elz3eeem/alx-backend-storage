@@ -66,18 +66,24 @@ class Cache:
     """
 
     def __init__(self) -> None:
+        """initialize new instance of cache"""
         self._redis = redis.Redis()
         self._redis.flushdb()
 
     @count_calls
     @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
+        """stores info in redis database"""
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
 
     def get(self, key: str, fn: Optional[Callable] = None) \
             -> Union[str, bytes, int, float]:
+        """
+        get data that have been saved in redis using
+        its key with formmater function
+        """
         data = self._redis.get(key)
         if not data:
             return None
@@ -86,7 +92,9 @@ class Cache:
         return fn(data)
 
     def get_int(self, key: str) -> int:
+        """foramtter for getting int from redis"""
         return self.get(key, lambda x: int(x))
 
     def get_str(self, key: str) -> str:
+        """foramtter for getting string from redis"""
         return self.get(key, lambda x: str(x))
