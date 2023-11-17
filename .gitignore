@@ -1,0 +1,6 @@
+*/**/data.sql
+*/**/main.sql
+*/**/main.py
+.vscode
+*/**/dump/
+*/**/__pycache__/
