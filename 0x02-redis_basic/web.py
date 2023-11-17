@@ -22,6 +22,7 @@ def call_history(method: Callable) -> Callable:
         if cache:
             return cache.decode()
         html = method(url)
+        redis.expire(f"count:{url}", 10)
         redis.setex(f"cached:{url}", 10, html)
         return html
     return wrapper
