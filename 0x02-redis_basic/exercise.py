@@ -29,11 +29,23 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
+def replay(func: Callable):
+    r = redis.Redis()
+    key = func.__qualname__
+    inputs = r.lrange("{}:inputs".format(key), 0, -1)
+    outputs = r.lrange("{}:outputs".format(key), 0, -1)
+    calls = len(inputs)
+    print('{} was called {} {}:'.format(key,
+                                        calls,
+                                        "time" if calls == 1 else "times"))
+    for k, v in zip(inputs, outputs):
+        print('{}(*{}) -> {}'.format(key, k.decode(), v.decode()))
+
+
 class Cache:
     """
     Cache class will be used to do operation on redis client
     """
-
 
     def __init__(self) -> None:
         self._redis = redis.Redis()
@@ -46,7 +58,8 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Optional[Callable] = None) \
+            -> Union[str, bytes, int, float]:
         data = self._redis.get(key)
         if not data:
             return None
